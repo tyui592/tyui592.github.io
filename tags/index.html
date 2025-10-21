@@ -1,0 +1,136 @@
+---
+layout: default
+title: "Tags"
+permalink: /tags/
+---
+
+<section class="latest-posts">
+  <div class="sec-title"><span id="page-title">ALL TAGS</span></div>
+
+  <div id="all-tags" class="block" style="margin-bottom:16px">
+    {% assign tags_sorted = site.tags | sort %}
+    {% for tag in tags_sorted %}
+      {% assign tag_name = tag[0] %}
+      {% assign tag_slug = tag_name | slugify %}
+      <a class="tag" href="{{ '/tags/?tag=' | append: tag_slug | relative_url }}">{{ tag_name }}</a>
+    {% endfor %}
+  </div>
+
+  <ul id="post-list" class="post-list"></ul>
+</section>
+
+<script id="posts-data" type="application/json">
+[
+{% assign posts = site.posts %}
+{% for post in posts %}
+  {
+    "title": {{ post.title | jsonify }},
+    "url": {{ post.url | relative_url | jsonify }},
+    "date": {{ post.date | date: "%Y-%m-%d" | jsonify }},
+    "tags": [
+      {% for tag in post.tags %}
+        {
+          "name": {{ tag | jsonify }},
+          "slug": {{ tag | slugify | jsonify }}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ],
+    "excerpt": {{ post.excerpt | strip_html | truncate: 160 | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]
+</script>
+
+<script>
+(function() {
+  /**
+   * 쿼리스트링에서 특정 파라미터 값을 가져옵니다.
+   */
+  function qs(name) {
+    const params = new URLSearchParams(window.location.search);
+    const v = params.get(name);
+    return v ? v.toString() : "";
+  }
+
+  /**
+   * 필터링된 포스트 목록을 렌더링합니다.
+   */
+  function render(posts, tag) {
+    const list = document.getElementById("post-list");
+    list.innerHTML = "";
+
+    const titleSpan = document.getElementById("page-title");
+    const allTagsBox = document.getElementById("all-tags");
+
+    if (tag) {
+      // 가독성을 위해 slug를 사람이 읽을 수 있도록 복원 (하이픈 -> 공백)
+      const nice = tag.replace(/-/g, " ");
+      titleSpan.textContent = '#' + nice + ' 태그의 글';
+      
+      // 현재 선택된 태그 강조
+      allTagsBox.querySelectorAll(".tag").forEach(a => {
+        // 정확히 해당 slug를 포함하는지 확인
+        if (a.getAttribute("href").includes(`tag=${tag}`)) {
+          a.classList.add("active");
+        } else {
+          a.classList.remove("active");
+        }
+      });
+    } else {
+      titleSpan.textContent = 'ALL TAGS';
+      // ALL TAGS일 때 모든 태그에서 active 클래스 제거
+      allTagsBox.querySelectorAll(".tag").forEach(a => a.classList.remove("active"));
+    }
+
+    if (posts.length === 0) {
+      const li = document.createElement("li");
+      li.className = "muted";
+      li.textContent = tag ? "해당 태그의 글이 아직 없습니다." : "아직 작성된 글이 없습니다.";
+      list.appendChild(li);
+      return;
+    }
+
+    posts.forEach(p => {
+      const li = document.createElement("li");
+      li.className = "block";
+      li.style.marginBottom = "16px";
+      
+      // p.tags는 이제 {name: '...', slug: '...'} 객체의 배열입니다.
+      const tagsHtml = (p.tags || []).map(t => {
+        // Jekyll에서 생성한 정확한 slug (t.slug)를 사용하여 링크를 만듭니다.
+        return `<a class="tag" href="{{ '/tags/?tag=' | relative_url }}${t.slug}">${t.name}</a>`;
+      }).join(' ');
+
+      li.innerHTML = [
+        '<a href="'+p.url+'"><b>'+p.title+'</b></a>',
+        '<div class="muted">'+p.date+' · ' + tagsHtml + '</div>',
+        p.excerpt ? '<p>'+p.excerpt+'</p>' : ''
+      ].join('');
+      list.appendChild(li);
+    });
+  }
+
+  // 데이터 로드
+  // 'posts'와 'filtered' 변수는 조건부 재할당이 필요하므로 'let'을 사용 (개선됨)
+  let posts = []; 
+  try {
+    const raw = document.getElementById("posts-data").textContent;
+    posts = JSON.parse(raw);
+  } catch (e) { 
+    console.error("Failed to parse post data:", e); 
+  }
+
+  const tag = qs("tag").toLowerCase();
+
+  let filtered = posts;
+  if (tag) {
+    // 필터링 로직 업데이트: tags 배열 내의 객체에서 slug를 확인 (개선됨)
+    filtered = posts.filter(p => (p.tags || []).some(t => {
+      // t는 이제 tag 객체 {name: '...', slug: '...'} 입니다.
+      return t.slug === tag;
+    }));
+  }
+
+  render(filtered, tag);
+})();
+</script>
