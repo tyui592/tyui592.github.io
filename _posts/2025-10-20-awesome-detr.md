@@ -2,12 +2,12 @@
 layout: post
 title: "Awesome Detection Transformer"
 date: 2025-10-20 10:34:00 +0900
-excerpt: "DETR 계열 모델들 정리"
-tags: [object_detection, detr, survey]
+excerpt: "DETR 계열 검출기 모델 정리"
+tags: [object-detection, detr, survey]
 ---
 
 ## DETR 계열 검출기 정리
-DETR 계열 검출기 모델들을 정리한다. Object365 등 추가 데이터를 활용하여 Pre-training한 모델은 제외하고 Backbone으로 ResNet50(R50)을 사용한 모델들 위주로 우선 정리한다.
+DETR 계열 검출기 모델들을 정리, Object365 등 추가 데이터를 활용하여 Pre-training한 모델은 제외하고 Backbone으로 ResNet50(R50)을 사용한 모델들 위주로 우선 리스트업.
 
 ### 성능표 (MS-COCO val2017)
 
@@ -143,6 +143,17 @@ DETR 계열 검출기 모델들을 정리한다. Object365 등 추가 데이터�
 </script>
 
 ### 모델 분류표
+DETR 후속 연구들은 attention 구조(self-attention 및 cross-attention) 를 개선하여 느린 수렴 문제를 해결하려는 방향으로 발전했다.
+특히, decoder의 cross-attention이 encoder memory 전역에서 객체를 탐색하는 비효율성을 줄이기 위해, deformable sampling, conditional attention 등을 적용하여 수렴 속도를 크게 향상시켰다.
+
+또한, object query를 단순한 random vector로 초기화하던 기존 방식 대신, box(anchor)나 reference point와 같은 물리적 의미를 가진 형태로 설계하여 학습 안정성과 해석 가능성을 높이는 연구들이 등장했다.
+이로써 쿼리가 이미지 내의 실제 위치 정보를 직접 참조할 수 있게 되어, decoder가 불필요한 attention 탐색을 수행하지 않고 효율적으로 객체–특징 대응을 학습할 수 있게 되었다.
+
+이후에는 DETR의 핵심인 bipartite matching(one-to-one) 전략의 한계를 보완하기 위해, one-to-many matching이나 auxiliary matching branch를 추가하는 연구들이 등장하였다.
+이 방법들은 학습 안정성을 유지하고 one-to-one 매칭을 유지하여 nms와 같은 후처리가 필요없는 심플한 구조를 유지하면서도 recall과 convergence를 동시에 개선하려는 시도라 할 수 있다.
+
+전체적으로 보면, DETR 계열의 발전 방향은 Object Query (입력 설계), Transformer Architecture (Attention 및 Decoder 구조), 그리고 Matching Mechanism (Loss 및 학습 전략) 의 세 축으로 구분하여 이해할 수 있다.
+
 <p align="center">
   <img src="{{ '/assets/posts/2025-10-20-awesome-detr/detr.png' }}" width="90%">
 </p>
