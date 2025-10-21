@@ -2,19 +2,43 @@
 layout: default
 title: "Home"
 ---
+
+<!-- ================= Hero ================= -->
 <section class="hero">
   <h1>안녕하세요, 저는 <span class="accent">김민성</span>입니다.</h1>
-  <p class="lead">
-    
-  </p>
+  
+  <!-- <div class="hero-actions">
+    <a class="button" href="{{ '/resume.html' | relative_url }}">Resume</a>
+    <a class="button secondary" href="https://github.com/tyui592" target="_blank" rel="noopener">GitHub</a>
+    <a class="button secondary" href="mailto:tyui592@gmail.com">Email</a>
+    <a class="button secondary" href="{{ '/projects/' | relative_url }}">Projects</a>
+  </div> -->
+
+  <!-- 즐겨 찾는 링크가 더 필요하면 사용 -->
+  <!-- <ul class="inline-links" style="margin-top:12px;">
+    <li><a href="https://linkedin.com/in/tyui592" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="https://minssi.notion.site/158c08e0c94d807689d0e776eac453d6" target="_blank" rel="noopener">Notion</a></li>
+  </ul> -->
 </section>
 
+<!-- ================= About (mini) ================= -->
+<section class="about">
+  <div class="sec-title"><span>ABOUT</span></div>
+  <div class="block">
+    안녕하세요, 김민성입니다. 저는 주로 딥러닝 모델 개발과 배포·운영을 담당하는 머신러닝 엔지니어로 일하고 있습니다.<br>
+    어렵고 답이 없는 문제를 해결하기 위해, 고민하는 과정 자체와 문제를 해결 할 때의 성취를 즐기고 보람을 느낍니다.<br>
+    새로운 기술을 배우고 적용하며 무언가를 만드는 것을 즐기고 협업을 통해 더 나은 솔루션을 만들어가는 것을 중요하게 생각합니다.
+  </div>
+</section>
+
+
+<!-- ================= Latest Posts ================= -->
 <section class="latest-posts">
   <div class="sec-title"><span>LATEST POSTS</span></div>
   <ul class="post-list">
     {% assign recent_posts = site.posts | slice: 0, 3 %}
     {% if recent_posts.size == 0 %}
-      <li class="muted">아직 작성된 글이 없습니다. 조금만 기다려 주세요!</li>
+      <li class="muted">아직 작성된 글이 없습니다.</li>
     {% else %}
       {% for post in recent_posts %}
         <li class="block" style="margin-bottom:16px">

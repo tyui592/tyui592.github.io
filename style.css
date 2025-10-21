@@ -415,3 +415,9 @@ a.tag { color: inherit; }
 /* 필요하면 격자(grid) 스타일을 선택적으로 쓸 수 있게 */
 .table-grid th, .table-grid td { border: 1px solid #e5e7eb; }
 .table-grid { border: 1px solid #e5e7eb; }
+
+
+/* About 섹션 들여쓰기 보정 */
+.about .block {
+  margin-left: 40px;  /* 혹은 padding-left: 16px; */
+}
