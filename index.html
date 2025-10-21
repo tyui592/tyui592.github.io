@@ -1,0 +1,41 @@
+---
+layout: default
+title: "Home"
+---
+<section class="hero">
+  <h1>안녕하세요, 저는 <span class="accent">김민성</span>입니다.</h1>
+  <p class="lead">
+    
+  </p>
+</section>
+
+<section class="latest-posts">
+  <div class="sec-title"><span>LATEST POSTS</span></div>
+  <ul class="post-list">
+    {% assign recent_posts = site.posts | slice: 0, 3 %}
+    {% if recent_posts.size == 0 %}
+      <li class="muted">아직 작성된 글이 없습니다. 조금만 기다려 주세요!</li>
+    {% else %}
+      {% for post in recent_posts %}
+        <li class="block" style="margin-bottom:16px">
+          <a href="{{ post.url | relative_url }}"><b>{{ post.title }}</b></a>
+          <div class="muted">
+            {{ post.date | date: "%Y-%m-%d" }}
+            {% if post.tags %}
+              ·
+              <span class="post-tags">
+                {% for tag in post.tags %}
+                  {% capture tag_slug %}{{ tag | slugify }}{% endcapture %}
+                  <a class="tag" href="{{ '/tags/?tag=' | append: tag_slug | relative_url }}">{{ tag }}</a>
+                {% endfor %}
+              </span>
+            {% endif %}
+          </div>
+          {% if post.excerpt %}
+            <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+</section>

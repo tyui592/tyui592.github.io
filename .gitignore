@@ -1,0 +1,12 @@
+foo/
+# Jekyll build outputs
+_site/
+.jekyll-cache/
+.sass-cache/
+.jekyll-metadata
+
+# OS / IDE files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

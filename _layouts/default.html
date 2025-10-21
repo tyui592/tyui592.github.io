@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ko">
+{% include head.html %}
+<body>
+  <div class="page">
+    {% include header.html %}
+    <main>{{ content }}</main>
+  </div>
+  <footer class="footer">
+    <div class="update-date">Last updated: {{ site.time | date: "%Y-%m-%d" }}</div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,417 @@
+/* =======================================
+   Resume CSS Stylesheet
+   Author: Minseong Kim
+   Description: Layout, Typography, Color System
+   ======================================= */
+
+/* ---------- 전역 색상 변수 ---------- */
+:root {
+  --ink: #0f172a;     /* 본문 글자 색 */
+  --muted: #475569;   /* 보조 글자 색 */
+  --brand: #5ba7ff;   /* 포인트 컬러 */
+  --bar: #e6eefc;     /* 구분선 / 섹션 바 */
+  --paper: #ffffff;   /* 배경색 */
+}
+
+/* ---------- 전역 폰트 및 비율 ---------- */
+html {
+  font-size: 90%; /* 기본 16px → 약 14.4px */
+}
+body {
+  font-family: "Poppins", "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    "Apple SD Gothic Neo", "맑은 고딕", sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ---------- 페이지 전체 래퍼 ---------- */
+.page {
+  max-width: 960px;
+  margin: 32px auto;
+  padding: 32px;
+  background: #fff;
+}
+
+/* 인쇄(PDF) 모드용 설정 */
+@media print {
+  @page { size: A4; margin: 12mm; }
+  .page { max-width: none; margin: 0; padding: 0; }
+  html { font-size: 85%; } /* PDF 인쇄 시 살짝 축소 */
+}
+
+/* ---------- 헤더 (이름, 직무) ---------- */
+header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 4px solid var(--bar);
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+}
+.name {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.role {
+  font-size: 1.4rem;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* header navigation */
+.site-header {
+  border-bottom: 3px solid #e6eefc;
+  padding: 16px 0;
+  margin-bottom: 32px;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;                /* 항목 간 간격 */
+  align-items: center;
+  font-size: 1.1rem;        /* 기본 14px → 약 17~18px 정도 */
+  font-weight: 600;         /* 굵게 */
+  letter-spacing: 0.3px;
+}
+
+.nav a {
+  color: #1d4ed8;           /* 더 강한 파란색 */
+  text-decoration: none;
+  transition: color 0.2s ease, border-bottom 0.2s ease;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+}
+
+.nav a:hover {
+  color: #0f172a;
+  border-bottom: 2px solid #5ba7ff;
+}
+
+/* ---------- 2단 레이아웃 ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: 2.1fr 1fr;
+  gap: 28px;
+}
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- 섹션 기본 ---------- */
+section { margin-bottom: 22px; }
+.sec-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+.sec-title span { font-size: 1.3rem; }
+.sec-title:before {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 10px;
+  border-radius: 6px;
+  background: var(--bar);
+}
+.block { margin-top: 12px; }
+
+/* ---------- 메인 본문 ---------- */
+main { font-size: 1rem; }
+main .job-title { font-size: 1.05rem; font-weight: 700; }
+main .company-dates { font-size: 0.9rem; color: var(--muted); margin-top: 2px; }
+main .bullets { margin: 8px 0 0; padding-left: 18px; }
+main .bullets li { margin: 6px 0; font-size: 0.95rem; }
+.small { font-size: 0.85rem; color: var(--muted); }
+
+.company-name {
+  font-weight: 700;          /* ✅ 볼드 */
+  color: var(--brand);       /* ✅ 포인트 색 (파란색 계열) */
+}
+
+/* ---------- 링크 스타일 ---------- */
+a { color: #1d4ed8; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---------- 사이드바 ---------- */
+aside { font-size: 0.9rem; }
+.card {
+  border-left: 6px solid var(--bar);
+  padding: 12px 0 0 16px;
+}
+.kv { margin: 4px 0; }
+.kv b { display: inline-block; width: 64px; }
+.list-dot { list-style: disc; padding-left: 18px; margin: 8px 0; }
+
+/* Tag 스타일 (resume의 skills와 동일한 모양) */
+.tag {
+  display: inline-block;
+  width: auto;
+  max-width: fit-content;
+  border: 1px solid #d9e6ff;
+  color: #3b6edc;
+  background: #f6faff;
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin: 2px;
+  font-size: 0.8rem;
+}
+.tag:hover,
+.tag:focus {
+  background: #e6eef8;
+  transform: translateY(-1px);
+  text-decoration: none;
+  outline: none;
+}
+
+/* 태그 리스트 컨테이너(선택) */
+.post-tags { display: inline-block; margin-left: 6px; }
+a.tag { color: inherit; }
+
+.skill-cols {
+  /* display: grid; */
+  display: flex;
+  flex-wrap: wrap;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.soft { height: 1px; background: var(--bar); margin: 14px 0; }
+
+@media print {
+  .skill-cols {
+    display: block !important;     /* 인쇄 시 grid 대신 block */
+  }
+  .skill-cols .tag {
+    display: inline-block !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+}
+
+/* ===================== Print fixes ===================== */
+@media print {
+  /* 2단 레이아웃은 유지 */
+  .grid{
+    display: grid !important;
+    grid-template-columns: 2.1fr 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* 페이지 폭/여백 보정(취향에 맞게 수치 조절 가능) */
+  .page{
+    max-width: 900px !important;     /* 880~940px 범위 권장 */
+    margin: 0 auto !important;
+    padding: 24px !important;
+  }
+
+  /* ⛔ 큰 컨테이너에는 break-inside: avoid 적용하지 않음 */
+  main, aside, section, .grid {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  /* ✅ 작은 블록만 잘리지 않게 보호 */
+  .item, .card, .sec-title, .block {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* 헤더가 고아(페이지 끝에 타이틀만 남는)되는 것 방지 */
+  header { break-after: avoid; page-break-after: avoid; margin-bottom: 10mm; }
+
+  /* 글자/색 보정 (브라우저별 색상 유지) */
+  *{
+    -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+  }
+
+  /* (선택) 고아/과부줄 방지 */
+  p, li { orphans: 3; widows: 3; }
+}
+
+/* =====================
+   Project subsection styling
+   ===================== */
+.project {
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+.project-title {
+  font-weight: 700;
+  /* color: var(--brand); /* 포인트 컬러 */
+  font-size: 1rem;
+  margin-bottom: 4px;
+  /* border-left: 4px solid var(--bar); */
+  /* padding-left: 8px; */
+}
+.project ul {
+  margin-top: 4px;
+  margin-left: 18px;
+  padding-left: 0;
+  list-style-type: disc;
+}
+.project ul li {
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+/* ---- 프로젝트 내 하위 항목(서브 불릿) ---- */
+.sub-bullets{
+  list-style: circle;          /* 부모보다 약한 원형 불릿 */
+  margin: 6px 0 10px 18px;     /* 부모 불릿보다 한 단계 더 들여쓰기 */
+  padding-left: 0;
+  font-size: 0.92rem;          /* 약간 작게 */
+  color: var(--muted);         /* 살짝 옅은 톤 */
+}
+.sub-bullets li{
+  margin: 3px 0;
+}
+
+/* 강조 형태(선택) */
+.sub-strong{ font-weight: 700; color: var(--ink); }   /* 수치 성과 등 강조 */
+.sub-em    { font-style: italic; }                    /* 학회/논문명 등 기울임 */
+
+/* 인쇄 시도 동일하게 유지 */
+@media print{
+  .sub-bullets{ font-size: 0.9rem; color: #000; }
+}
+
+.access-date {
+  font-size: 0.65rem;
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+/* =====================
+   Footer (Last updated)
+   ===================== */
+.footer {
+  text-align: center;       /* 가운데 정렬 */
+  margin-top: 40px;         /* 본문과 간격 */
+  padding-top: 12px;
+  border-top: 1px solid var(--bar); /* 상단 구분선 */
+}
+
+.update-date {
+  font-size: 0.85rem;       /* 살짝 작게 */
+  color: var(--muted);      /* 보조 텍스트 색상 */
+  letter-spacing: 0.3px;
+}
+
+.item {
+  margin-bottom: 10px;   /* 각 학력/경력 항목 간 일정 간격 확보 */
+  /* overflow: auto; */
+}
+
+/* ---------- Homepage enhancements ---------- */
+.hero {
+  margin-bottom: 32px;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.hero .accent {
+  color: var(--brand);
+}
+
+.hero .lead {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 640px;
+}
+
+.hero-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  background: var(--brand);
+  color: #fff;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.button:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(91, 167, 255, 0.35);
+}
+
+.button.secondary {
+  background: transparent;
+  color: var(--brand);
+  border: 2px solid var(--brand);
+}
+
+.latest-posts .post-list p {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.inline-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 18px;
+}
+
+.inline-links li {
+  margin: 0;
+}
+
+.tag.active {
+  background: var(--brand);
+  color: #fff;
+}
+
+/* 본문 구분용 라인 */
+.post-line {
+  border: none;
+  border-top: 1px solid #0f21e369; /* 연한 회색 */
+  margin: 16px 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .post-line {
+    border-top-color: #26599f5b; /* 다크 모드 대비 */
+  }
+}
+
+/* 2025-10-20, --- Table (lines) --- */
+/* === Tables: full grid + 가독성 보정 === */
+/* --- Table (lines) --- */
+.post table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 20px;
+  font-variant-numeric: tabular-nums;
+}
+.post thead th {
+  border-bottom: 2px solid #e5e7eb; /* 헤더 하단 진하게 */
+}
+.post th, .post td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #ececec; /* 가로 라인 */
+}
+.post tbody tr:last-child td {
+  border-bottom: 1px solid #e5e7eb; /* 마지막 행 마감선 */
+}
+
+/* 필요하면 격자(grid) 스타일을 선택적으로 쓸 수 있게 */
+.table-grid th, .table-grid td { border: 1px solid #e5e7eb; }
+.table-grid { border: 1px solid #e5e7eb; }

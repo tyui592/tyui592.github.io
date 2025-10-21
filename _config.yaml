@@ -1,0 +1,20 @@
+title: "Minseong Kim"
+url: "https://tyui592.github.io"
+theme: null
+markdown: kramdown
+highlighter: rouge
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:slug/
+
+# GitHub Pages에서 지원하는 플러그인(선택)
+plugins:
+  - jekyll-feed      # RSS 자동생성(/feed.xml)
+  - jekyll-sitemap   # /sitemap.xml
+  - jekyll-seo-tag   # SEO/OG 메타
+  - jekyll-paginate  # 블로그 페이지네이션
+
+paginate: 10
+paginate_path: "/blog/page:num/"

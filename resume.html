@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Resume - Minseong Kim</title>
+
+  <!-- ✅ Google Fonts: 영문(Poppins) + 한글(Noto Sans KR) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- ✅ 외부 CSS 연결 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <!-- ===============================
+         HEADER: 이름 / 직무 / 상단 구분선
+         =============================== -->
+    <header>
+      <div>
+        <div class="name">김민성 | Kim Minseong</div>
+        <div class="role">Computer Vision Engineer</div>
+      </div>
+    </header>
+
+    <!-- ===============================
+         메인 레이아웃 (2단 구조)
+         왼쪽: main, 오른쪽: aside
+         =============================== -->
+    <div class="grid">
+      <!-- LEFT COLUMN: 메인 콘텐츠 -->
+      <main>
+        <!-- -------- Summary -------- -->
+        <section>
+          <div class="sec-title"><span>PROFESSIONAL SUMMARY</span></div>
+          <div class="block">
+            데이터 수집·정제부터 모델 최적화와 배포까지, end-to-end ML 파이프라인을 구축해 온 컴퓨터 비전 엔지니어입니다.
+            실세계 환경에서 발생하는 데이터 노이즈, 불균형, 도메인 편차, 라벨 품질 저하 등 다양한 제약을 극복하기 위해 알고리즘적·시스템적 접근을 병행해왔습니다.
+            답이 보이지 않는 문제일수록 깊이 몰입해 근본적인 해결책을 찾으려 노력하며, 데이터 품질 향상과 모델 연구 및 개발·운영을 주도했습니다.
+            실제 서비스 환경에서 신뢰할 수 있는 AI 시스템을 구현하는 것을 목표로 하고 있습니다.
+          </div>
+        </section>
+
+        <!-- -------- Work EXPERIENCE -------- -->
+        <section>
+          <div class="sec-title"><span>WORK EXPERIENCE</span></div>
+
+          <!-- 어스에이트 -->
+          <div class="item">
+            <div class="job-title">Researcher, Co-Founder</div>
+            <div class="company-dates">
+              어스에이트(Earth Eight) · 2022.04 – 현재
+            </div>
+
+            <!-- 프로젝트 단위로 구분 -->
+            <div class="project">
+              <div class="project-title">미국 및 호주 산불 검출 프로젝트</div>
+              <ul class="bullets">
+                <li>CCTV 영상 및 카메라 메타 정보 수집 및 정제 파이프라인 구축</li>
+                <li>전문 레이블러 고용·관리하여 고품질 학습 데이터 셋 구축</li>
+                <li>Transformer 기반 Custom 산불 검출 모델 연구 개발</li>
+                <li>VLMs를 활용한 Semi-supervised learning(Pseudo labeling) 연구</li>
+                <li><em>Human-in-the-Loop</em> 기반 성능 개선 파이프라인 구축</li>
+                <li>ONNX & TensorRT 기반 모델 최적화 (3ms@RTX4090·512px)</li>
+                <li>구글 클라우드(GCP) 기반 실시간 산불 검출 시스템 설계 및 개발</li>
+                <div class="small">링크: <a href="https://wildfire-map-zmw2uzqbjq-uc.a.run.app/" target="_blank">Wildfire Dashboard</a><span class="access-date">(accessed 2025-10-16)</span></div>
+              </ul>
+            </div>
+            <!-- 프로젝트 단위로 구분 -->
+            <div class="project">
+              <div class="project-title">고속도로 위험 기상(짙은 안개) 검출 프로젝트</div>
+              <ul class="bullets">
+                <li>기상청·국가교통정보센터 API를 활용한 기상 및 CCTV 영상 정보 수집 파이프라인 구축</li>
+                <li>노면 규격 정보를 이용한 카메라 파라미터 및 시정 거리 추정 알고리즘 개발</li>
+                <li>CCTV 영상 기반 짙은 안개 검출기 모델 개발</li>
+                <div class="small">링크: <a href="https://www.eartheight.com/service/EE_Dashboard_demo.html" target="_blank">Earth Eight Dashboard</a><span class="access-date">(accessed 2025-10-16)</span></div>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 알체라 -->
+          <div class="item">
+            <div class="job-title">Researcher</div>
+            <div class="company-dates">알체라(Alchera Inc.) · 2020.01 – 2022.04</div>
+            <div class="project">
+              <div class="project-title">미국 산불 검출 프로젝트</div>
+              <ul class="bullets">
+                <li>모델 개발을 위한 대규모(백만건 단위) 실험 데이터 셋 구축</li>
+                <li>산불 검출에 적합한 모델 설계 및 연구 개발</li>
+                <li>레이블링 노이즈에 강인한 로스 연구</li>
+                <ul class="sub-bullets">
+                  <li>TPR 0.9905 @ FPR 0.0011 성능 달성 (당시 SOTA 대비 수십 배 개선)</li>
+                  <li>NIPS Workshop 2022: <em>Image-based Early Detection System for Wildfires</em></li>
+                </ul>
+                <li>모델 경량화를 통한 GPU 메모리 사용량 40% 절감, 추론 속도 3배 향상</li>
+                <li>모니터링 오퍼레이터 운영 (채용, 교육, 관리 등)</li>
+                <li>Continual learning 연구를 통한 모델 성능의 지속적 개선</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 카카오 인턴 -->
+          <div class="item">
+            <div class="job-title">Internship</div>
+            <div class="company-dates">카카오(Kakao) · 2018.01 – 2018.03, 2018.08 – 2018.09</div>
+            <div class="project">
+            <div class="project-title">겨울 · 여름 방학 연구 인턴쉽</div>
+              <ul class="bullets">
+                <li>프루닝 기반 네트워크 경량화 연구 (모델 크기 20% 축소, 속도 50% 개선)</li>
+                <li>스타일 품질 개선을 위한 인코더 네트워크 학습 기법 연구</li>
+                <div class="small">링크: <a href="https://kakaoenterprise.github.io/papers/uncorrelated-feature-encoding-for-faster-image-style-transfer" target="_blank">Kakao Blog</a><span class="access-date">(accessed 2025-10-16)</span></div>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- -------- Education -------- -->
+        <section>
+          <div class="sec-title"><span>EDUCATION</span></div>
+          <div class="item">
+            <div class="job-title">석사, 전자공학과</div>
+            <div class="company-dates">영남대학교 · 2017.09 – 2019.08</div>
+            <ul class="bullets">
+              <li>졸업 논문: Image style transfer method considering the inter-channel/inter-scale correlation in VGG feature maps and the channel redundancy of VGG network.</li>
+              <li>Advisor: 최현철 교수</li>
+              <div class="small">링크: <a href="https://pogary.yu.ac.kr/members.html" target="_blank">연구실</a><span class="access-date">(accessed 2025-10-16)</span></div>
+            </ul>
+          </div>
+          <div class="item">
+            <div class="job-title">학사, 전자공학과</div>
+            <div class="company-dates">영남대학교 · 2011.03 – 2017.02</div>
+          </div>
+        </section>
+
+        <!-- -------- Publication -------- -->
+        <section>
+          <div class="sec-title"><span>PUBLICATION</span></div>
+          <ul class="bullets">
+            <li>Compact Image Style Transfer: Channel Pruning on a Single Training of Network, MDPI Sensors, DOI:
+              <a href="https://doi.org/10.3390/s22218427" target="_blank"> 10.3390/s22218427</a>.
+            </li>
+            
+            <li>Total Style Transfer with a Single Feed-Forward Network, MDPI Sensors, DOI: 
+              <a href="https://doi.org/10.3390/s22124612" target="_blank"> 10.3390/s22124612</a>.
+            </li>
+
+            <li>Uncorrelated Feature Encoding for Faster Image Style Transfer, Neural Networks, DOI:
+              <a href="https://doi.org/10.1016/j.neunet.2021.03.007" target="_blank"> 10.1016/j.neunet.2021.03.007</a>.
+            </li>
+
+            <li>Improving Faster R-CNN framework for multiscale Chinese character detection, IEICE Transactions, DOI:
+              <a href="https://doi.org/10.1587/transinf.2019EDL8217" target="_blank"> 10.1587/transinf.2019EDL8217</a>.
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <!-- RIGHT COLUMN: 사이드바 -->
+      <aside>
+        <section class="card">
+          <div class="sec-title"><span>CONTACT</span></div>
+          <div class="block">
+            <!-- <div class="kv"><b>Phone</b> 010-8782-3697</div> -->
+            <div class="kv"><b>Email</b> <a href="mailto:tyui592@gmail.com">tyui592@gmail.com</a></div>
+          </div>
+          <div class="soft"></div>
+
+          <div class="sec-title"><span>WEBSITES</span></div>
+          <ul class="list-dot">
+            <li><a href="https://linkedin.com/in/tyui592" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/tyui592" target="_blank">Github</a></li>
+            <li><a href="https://minssi.notion.site/158c08e0c94d807689d0e776eac453d6" target="_blank">Notion</a></li>
+          </ul>
+          <div class="soft"></div>
+
+          <div class="sec-title"><span>TECHNICAL SKILLS</span></div>
+          <div class="block">
+            <div><b>Languages</b></div>
+            <div class="skill-cols">
+              <span class="tag">Python</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Bash</span>
+            </div>
+
+            <div style="height:8px"></div>
+            <div><b>Frameworks</b></div>
+            <div class="skill-cols">
+              <span class="tag">PyTorch</span>
+              <span class="tag">TensorFlow</span>
+              <span class="tag">LibTorch</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">FastAPI</span>
+            </div>
+
+            <div style="height:8px"></div>
+            <div><b>Cloud & DevOps</b></div>
+            <div class="skill-cols">
+              <span class="tag">GCP</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Git</span>
+            </div>
+
+            <div style="height:8px"></div>
+            <div><b>Databases</b></div>
+            <div class="skill-cols">
+              <span class="tag">MySQL</span>
+              <span class="tag">SQLite</span>
+            </div>
+
+            <div style="height:8px"></div>
+            <div><b>ML/DL</b></div>
+            <div class="skill-cols">
+              <span class="tag">Object Detection</span>
+              <span class="tag">Recognition</span>
+              <span class="tag">Pruning</span>
+              <span class="tag">ONNX</span>
+              <span class="tag">TensorRT</span>
+              <span class="tag">Triton</span>
+              <span class="tag">W&B</span>
+            </div>
+
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+</body>
+
+<footer class="footer">
+  <div class="update-date">
+    Last updated: 2025-10-16
+  </div>
+</footer>
+</html>
