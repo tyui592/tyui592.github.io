@@ -58,9 +58,9 @@
               <div class="project-title">미국 및 호주 산불 검출 프로젝트</div>
               <ul class="bullets">
                 <li>CCTV 영상 및 카메라 메타 정보 수집 및 정제 파이프라인 구축</li>
-                <li>전문 레이블러 고용·관리하여 고품질 학습 데이터 셋 구축</li>
-                <li>Transformer 기반 Custom 산불 검출 모델 연구 개발</li>
-                <li>VLMs를 활용한 Semi-supervised learning(Pseudo labeling) 연구</li>
+                <li>전문 레이블러 고용·협업을 통한 학습 데이터 셋 구축</li>
+                <li>산불 검출에 적합한 Transformer 기반의 검출기 모델 및 로스 연구</li>
+                <li>VLM를 활용한 Semi-supervised learning(Pseudo labeling) 연구</li>
                 <li><em>Human-in-the-Loop</em> 기반 성능 개선 파이프라인 구축</li>
                 <li>ONNX & TensorRT 기반 모델 최적화 (3ms@RTX4090·512px)</li>
                 <li>구글 클라우드(GCP) 기반 실시간 산불 검출 시스템 설계 및 개발</li>
@@ -71,8 +71,8 @@
             <div class="project">
               <div class="project-title">고속도로 위험 기상(짙은 안개) 검출 프로젝트</div>
               <ul class="bullets">
-                <li>기상청·국가교통정보센터 API를 활용한 기상 및 CCTV 영상 정보 수집 파이프라인 구축</li>
-                <li>노면 규격 정보를 이용한 카메라 파라미터 및 시정 거리 추정 알고리즘 개발</li>
+                <li>기상청·국가교통정보센터 API를 활용한 기상 정보 및 CCTV 영상 수집 파이프라인 구축</li>
+                <li>단일 카메라 영상 기반 시정 거리 추정 알고리즘 개발</li>
                 <li>CCTV 영상 기반 짙은 안개 검출기 모델 개발</li>
                 <div class="small">링크: <a href="https://www.eartheight.com/service/EE_Dashboard_demo.html" target="_blank">Earth Eight Dashboard</a><span class="access-date">(accessed 2025-10-16)</span></div>
               </ul>
@@ -86,7 +86,7 @@
             <div class="project">
               <div class="project-title">미국 산불 검출 프로젝트</div>
               <ul class="bullets">
-                <li>모델 개발을 위한 대규모(백만건 단위) 실험 데이터 셋 구축</li>
+                <li>모델 개발을 위한 대규모 실험 데이터 셋 구축</li>
                 <li>산불 검출에 적합한 모델 설계 및 연구 개발</li>
                 <li>레이블링 노이즈에 강인한 로스 연구</li>
                 <ul class="sub-bullets">
@@ -231,7 +231,7 @@
 
 <footer class="footer">
   <div class="update-date">
-    Last updated: 2025-10-16
+    Last updated: {{ page.last_modified_at | date: "%Y-%m-%d" }}
   </div>
 </footer>
 </html>
