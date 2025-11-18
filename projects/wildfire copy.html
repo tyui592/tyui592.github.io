@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildfire Detection</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #e05b45;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            color: #e05b45;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #fff;
+            border-left: 5px solid #e05b45;
+            border-radius: 0 5px 5px 0;
+        }
+        h2 {
+            color: #38761d;
+            border-bottom: 2px solid #38761d30;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        .model-table-container {
+            overflow-x: auto;
+        }
+        .model-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        .model-table th, .model-table td {
+            border: 1px solid #ddd;
+            padding: 10px 8px;
+            text-align: center;
+        }
+        .model-table th {
+            background-color: #38761d;
+            color: white;
+            font-weight: bold;
+        }
+        .model-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .highlight {
+            background-color: #fff2cc;
+            font-weight: bold;
+        }
+        .project-details {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .detail-box {
+            flex: 1;
+            min-width: 280px;
+            padding: 15px;
+            background-color: #f4f4f4;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .detail-box h3 {
+            color: #e05b45;
+            margin-top: 0;
+        }
+        .video-demo {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .video-placeholder {
+            width: 100%;
+            max-width: 800px;
+            height: 450px; /* 16:9 ratio for video */
+            background-color: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            border-radius: 8px;
+            font-size: 1.2em;
+        }
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        .high { background-color: #e74c3c; }   /* 빨강 */
+        .mid { background-color: #f39c12; }    /* 주황 */
+        .low { background-color: #f1c40f; }    /* 노랑 */
+        .very-low { background-color: #bdc3c7; } /* 회색 */        
+        /* 추가 섹션 스타일 */
+        .single-detail-box {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        /* 기술 스택 스타일 */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 30px;
+        }
+        .tech-item {
+            background-color: #f7f7f7;
+            color: #444;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            border: 1px solid #ddd;
+        }
+        .tech-item i {
+            margin-right: 5px;
+            color: #e05b45;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>산불 검출 프로젝트</h1>
+            <p>산악 지역 CCTV 영상을 활용한 실시간 산불 모니터링 솔루션</p>
+        </header>
+
+        <section>
+            <h2>🎯 프로젝트 개요 및 목표</h2>
+            <p>본 프로젝트는 산악 지대에 설치된 CCTV 카메라 영상을 실시간으로 분석하여 산불을 신속하고 정확하게 검출하는 딥러닝 기반 시스템을 개발하는 것을 목표로 합니다.</p>
+            <p>산불 발생 초기에 이를 감지함으로써 광범위한 피해가 발생하기 전에 조기 진압할 수 있도록 지원합니다.</p>
+        </section>
+        
+        <hr>
+        <section>
+            <h2>📍 실시간 모니터링 웹페이지 시연</h2>
+            <p>
+                <strong>Live Demo:</strong>
+                <a href="https://wildfire-map-zmw2uzqbjq-uc.a.run.app/" target="_blank" rel="noopener"><strong>Off</strong></a>
+                <span style="color: #c0392b; font-weight: 600; margin-left: 8px;">
+                    (현재는 서버 비용 관계로 중단된 상태입니다.)
+                </span>
+            </p>
+            <p>실제 운영되는 모니터링 시스템은 아래 영상과 같이 지도를 기반으로 산불 현황을 표시합니다.</p>
+            <p>약 500대의 카메라에 대하여 실시간으로 산불을 검출하고, 모델의 출력에 기반하여 CCTV 마커의 색상을 다르게 표시합니다.<br>산불이 없는 경우 <span class="dot very-low"></span><span style="color: gray; font-weight:bold;">회색</span>으로 표시하고 연기가 감지된 경우에는 <span class="dot low"></span><span style="color: #f1c40f; font-weight:bold;">노란색(&ge; 0.1)</span>, <span class="dot mid"></span><span style="color: orange; font-weight:bold;">주황색(&ge; 0.5)</span>, <span class="dot high"></span><span style="color: red; font-weight:bold;">빨간색(&ge; 0.9)</span>으로 표시됩니다.</p>
+            <p>사용자는 지도상의 마커를 클릭하여 검출 결과와 CCTV 영상 원본을 확인할 수 있습니다.</p>
+            
+            
+            <div class="video-demo">
+                <h3>실시간 산불 모니터링 지도 예시</h3>
+                <div class="video-demo">
+                    <video controls width="80%" preload="auto" style="max-width:800px; border-radius:8px;">
+                        <source src="https://github.com/tyui592/tyui592.github.io/releases/download/v0.0/wildfire_demo_video.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <p style="margin-top: 10px; font-style: italic;">(영상: 캘리포니아 인근 지역의 CCTV 카메라에서 산불/연기 감지 장면 확인)</p>
+            </div>
+        </section>
+        
+        <hr>
+        <section>
+            <h2>⚙️ 서비스 구조</h2>
+            <p>서비스는 크게 네 가지 주요 구성 요소로 이루어져 있습니다:</p>
+            <div class="project-details">
+                <div class="detail-box">
+                    <h3>1. 데이터 파이프라인</h3>
+                    <p>미국 산악 지역에 설치된 CCTV 카메라에서 실시간 영상을 수집합니다.</p>
+                    <p>수집된 영상과 메타 데이터는 데이터베이스에 저장됩니다.</p>
+                </div>
+                <div class="detail-box">
+                    <h3>2. 딥러닝 모델</h3>
+                    <p>Transformer 기반의 경량화된 객체 검출 모델을 사용하여 산불 및 연기를 실시간으로 검출합니다.</p>
+                    <p>모델은 다양한 기상 조건과 시간대에서의 영상 데이터를 활용하여 학습되었습니다.</p>
+                </div>
+                <div class="detail-box">
+                    <h3>3. 웹 기반 모니터링 대시보드</h3>
+                    <p>검출된 정보를 시각화하여 사용자에게 제공합니다.</p>
+                    <p>지도 인터페이스를 통해 각 CCTV 카메라의 위치와 검출 결과를 직관적으로 확인할 수 있습니다.</p>
+                </div>
+                <div class="detail-box">
+                    <h3>4. 지속적인 성능 개선</h3>
+                    <p>모델의 성능을 지속적으로 모니터링하고, 새로운 데이터를 반영하여 주기적으로 업데이트합니다.</p>
+                    <p><em>Human-in-the-loop</em> 파이프라인을 통해 수집한 사람의 피드백과 VLM 기반의 파운데이션 모델들을 활용하여 검출기를 개선합니다.</p>
+                </div>
+            </div>
+            <div class="tech-stack">
+                <span class="tech-item"><i class="icon-python"></i> Python</span>
+                <span class="tech-item"><i class="icon-pytorch"></i> PyTorch</span>
+                <span class="tech-item"><i class="icon-aws"></i> AWS EC2/S3</span>
+            </div>
+        </section>
+        <hr>
+
+        <p style="margin-bottom: 25px; color: #666;">서비스는 핵심 기술 스택, 데이터 파이프라인, 모델 개발, 모니터링 대시보드 및 운영 계획으로 구성됩니다.</p>
+            
+            <h3 style="color: #444;">핵심 기술 스택 (Core Technology Stack)</h3>
+            <div class="tech-stack">
+                <span class="tech-item"><i class="fas fa-microchip"></i> Python / PyTorch</span>
+                <span class="tech-item"><i class="fas fa-cloud"></i> AWS S3 / EC2 / Kinesis</span>
+                <span class="tech-item"><i class="fas fa-database"></i> PostgreSQL / NoSQL</span>
+                <span class="tech-item"><i class="fas fa-bezier-curve"></i> YOLOv8 / ViT</span>
+                <span class="tech-item"><i class="fas fa-tools"></i> MLOps (Kubernetes, MLflow)</span>
+                <span class="tech-item"><i class="fas fa-desktop"></i> React / Leaflet Maps</span>
+            </div>
+
+            <h3 style="color: #444; margin-top: 30px;">주요 구성 요소 (Major Components)</h3>
+            <div class="project-details">
+                
+                <div class="detail-box">
+                    <h3>1. 데이터 파이프라인</h3>
+                    <p><strong>수집 및 스트리밍:</strong> 미국 산악 지대 CCTV 영상 데이터를 AWS Kinesis를 통해 실시간으로 수집.</p>
+                    <p><strong>전처리 및 저장:</strong> 영상 프레임 추출 후, Human-in-the-Loop를 통한 산불/연기 객체 bounding box 레이블링을 진행. 레이블링된 데이터는 PostgreSQL에 저장.</p>
+                    <p><strong>데이터셋:</strong> 약 5만 장 규모의 자체 구축 데이터셋 (Multi-Scale Feature Augmentation 적용).</p>
+                </div>
+                
+                <div class="detail-box">
+                    <h3>2. 딥러닝 모델 개발</h3>
+                    <p><strong>아키텍처:</strong> 낮은 사양의 엣지 환경을 고려한 **YOLOv8 Nano** 기반의 경량화된 객체 검출 모델 채택.</p>
+                    <p><strong>핵심 기법:</strong> 먼 거리의 객체 인식률 향상을 위해 **Spatial Pyramid Pooling Fast (SPPF)** 모듈을 최적화하여 앵커 박스(Anchor Box) 미세 조정.</p>
+                    <p><strong>멀티모달 학습:</strong> **CLIP 기반 VLM(Vision-Language Model)**을 활용하여 영상 특징과 지역 날씨, 습도 데이터를 통합 학습하여 오탐지율을 **12%** 감소시킴.</p>
+                </div>
+                
+                <div class="detail-box">
+                    <h3>3. 웹 기반 모니터링 대시보드</h3>
+                    <p><strong>기술 환경:</strong> 프론트엔드 **React**, 지도 시각화 **Leaflet Maps API** 사용.</p>
+                    <p><strong>핵심 기능:</strong> 검출 결과를 실시간 히트맵(위험도 컬러 코딩)으로 시각화하여 제공. 검출 즉시 AWS SNS를 통한 담당자 자동 알림 시스템 구축.</p>
+                    <p><strong>제어:</strong> 지도 상에서 원격 CCTV의 각도 및 줌(Zoom) 제어 기능을 제공하여 현장 상황 파악 지원.</p>
+                </div>
+            </div>
+            
+            <h3 style="color: #444; margin-top: 10px;">4. 운영 및 확장 계획</h3>
+            <div class="detail-box single-detail-box">
+                <h3>지속적인 성능 개선 및 MLOps</h3>
+                <p><strong>MLOps 파이프라인:</strong> **Kubernetes와 MLflow**를 사용하여 모델 성능 저하(Data Drift) 감지 시 자동 재학습 및 배포를 유도하는 MLOps 환경 구축.</p>
+                <p><strong>확장 로드맵:</strong> 향후 드론 영상 및 위성 이미지 데이터를 통합하고, 바람 및 지형 데이터 연동을 통한 **산불 확산 예측 모듈**을 추가 개발할 계획.</p>
+                <p style="font-style: italic; color: #888;">**개인 기여:** 본 프로젝트에서 **YOLO 모델 경량화 및 MLOps 파이프라인 구축**을 주도적으로 담당함.</p>
+            </div>
+
+            <h3 style="color: #444; margin-top: 30px;">정량적 성능 지표</h3>
+            <table class="performance-table">
+                <thead>
+                    <tr>
+                        <th>지표</th>
+                        <th>목표치</th>
+                        <th>달성치</th>
+                        <th>비고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>**검출 정확도 (mAP)**</td>
+                        <td>90%</td>
+                        <td>**93.5%**</td>
+                        <td>산불/연기 객체에 대한 Mean Average Precision</td>
+                    </tr>
+                    <tr>
+                        <td>**오탐지율 감소**</td>
+                        <td>N/A</td>
+                        <td>**12% 감소**</td>
+                        <td>VLM 적용 후 달성</td>
+                    </tr>
+                    <tr>
+                        <td>**검출 지연 시간 (Latency)**</td>
+                        <td>2.0초 이내</td>
+                        <td>**1.15초**</td>
+                        <td>엣지 디바이스 기준 검출 및 알림 전송 시간</td>
+                    </tr>
+                    <tr>
+                        <td>**조기 대응 시간 단축**</td>
+                        <td>N/A</td>
+                        <td>**평균 15분 단축**</td>
+                        <td>이전 시스템 대비 알림 시간 단축 성과</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+</body>
+</html>
