@@ -175,6 +175,9 @@
                 <!-- <span style="color: #c0392b; font-weight: 600; margin-left: 8px;">
                     (현재는 서버 비용 관계로 중단된 상태입니다.)
                 </span> -->
+                <span style="color: #475569; font-size: small;">
+                    (accessed 2025.12.11)
+                </span>
             </p>
             <p>실제 운영되는 모니터링 시스템은 아래 영상과 같이 지도를 기반으로 산불 현황을 표시합니다.</p>
             <p>약 500대의 카메라에 대하여 실시간으로 산불을 검출하고, 모델의 출력에 기반하여 CCTV 마커의 색상을 다르게 표시합니다.<br>산불이 없는 경우 <span class="dot very-low"></span><span style="color: gray; font-weight:bold;">회색</span>으로 표시하고 연기가 감지된 경우에는 <span class="dot low"></span><span style="color: #f1c40f; font-weight:bold;">노란색(&ge; 0.1)</span>, <span class="dot mid"></span><span style="color: orange; font-weight:bold;">주황색(&ge; 0.5)</span>, <span class="dot high"></span><span style="color: red; font-weight:bold;">빨간색(&ge; 0.9)</span>으로 표시됩니다.</p>
@@ -221,6 +224,18 @@
             </div>
         </section>
         <hr>
+        <footer style="text-align: center; padding: 5px; color: #999; font-size: 0.9em;">
+            <p>Last updated: <span id="updated-date"></span></p>
+        </footer>
     </div>
+
+    <script>
+        // 현재 날짜를 footer에 표시
+        document.getElementById('updated-date').textContent = new Date().toLocaleDateString('ko-KR', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        });
+    </script>
 </body>
 </html>
